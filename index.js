@@ -11,12 +11,17 @@ const USER = 'user';
 const PASS = 'secretpass';
 let latestCSV = '';
 
-// ✅ Ny: Visa att tjänsten körs på /
+// ✅ Visa att tjänsten körs
 app.get('/', (req, res) => {
   res.send(`
     <h1>✅ Tjänsten är igång!</h1>
     <p>Använd <code>/upload</code> (med Basic Auth) för att skicka Matrixify-export.</p>
   `);
+});
+
+// ✅ Nytt: låt Matrixify GET:a /upload för validering
+app.get('/upload', (req, res) => {
+  res.send('✅ Upload-endpoint aktiv – använd POST med Basic Auth och bifoga fil.');
 });
 
 const authMiddleware = (req, res, next) => {
