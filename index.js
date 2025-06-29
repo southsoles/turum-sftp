@@ -11,6 +11,14 @@ const USER = 'user';
 const PASS = 'secretpass';
 let latestCSV = '';
 
+// ✅ Ny: Visa att tjänsten körs på /
+app.get('/', (req, res) => {
+  res.send(`
+    <h1>✅ Tjänsten är igång!</h1>
+    <p>Använd <code>/upload</code> (med Basic Auth) för att skicka Matrixify-export.</p>
+  `);
+});
+
 const authMiddleware = (req, res, next) => {
   const creds = basicAuth(req);
   if (!creds || creds.name !== USER || creds.pass !== PASS) {
